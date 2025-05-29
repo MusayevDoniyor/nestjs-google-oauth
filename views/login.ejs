@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #eceff1, #90a4ae);
+      }
+
+      #login-wrapper {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 90%;
+        width: 400px;
+      }
+
+      #login-title {
+        color: #263238;
+        margin-bottom: 1.5rem;
+        font-size: 1.6rem;
+      }
+
+      #login-link_button {
+        padding: 12px 24px;
+        font-size: 16px;
+        background-color: #d32f2f;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #login-link_button:hover {
+        background-color: #b71c1c;
+      }
+
+      @media (max-width: 480px) {
+        #login-wrapper {
+          padding: 1.5rem;
+        }
+
+        #login-title {
+          font-size: 1.4rem;
+        }
+
+        #login-link_button {
+          padding: 10px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login-wrapper">
+      <h2 id="login-title">Login with Google</h2>
+      <a id="login-link" href="/auth/google/login">
+        <button id="login-link_button">Login with Google</button>
+      </a>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        if (token) {
+          localStorage.setItem('token', token);
+          window.location.href = 'http://localhost:3000/home';
+        }
+      });
+    </script>
+  </body>
+</html>
