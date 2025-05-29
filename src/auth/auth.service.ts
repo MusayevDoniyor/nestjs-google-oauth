@@ -11,13 +11,13 @@ export class AuthService {
   ) {}
 
   async validateGoogleUser(googleUser: CreateAuthDto) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.users.findUnique({
       where: { email: googleUser.email },
     });
 
     if (user) return user;
 
-    return this.prisma.user.create({
+    return this.prisma.users.create({
       data: googleUser,
     });
   }
@@ -35,11 +35,4 @@ export class AuthService {
 
     return { id: userId, token };
   }
-
-  // generatejwt(user: any) {
-  //   return this.jwtService.sign({
-  //     sub: user.id,
-  //     email: user.email,
-  //   });
-  // }
 }

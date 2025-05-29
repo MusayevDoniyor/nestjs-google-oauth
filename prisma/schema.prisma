@@ -15,7 +15,7 @@ datasource db {
 }
 
 
-model User {
+model Users {
   id        String    @id @default(uuid())
   email     String    @unique
   googleId  String    @unique
